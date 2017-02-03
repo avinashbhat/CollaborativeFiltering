@@ -7,7 +7,7 @@ To run, go to prompt.
 >>> from data import critics
 >>> from recommend import match
 >>> match(critics,'Toby',1,n=3) 
-#this uses Pearson Correlation and displays 3 results similar to Toby.
+this uses Pearson Correlation and displays 3 results similar to Toby.
 
 engine.py contains two recommender engines i)Euclid's distance and ii)Pearson Correlation. 
 
