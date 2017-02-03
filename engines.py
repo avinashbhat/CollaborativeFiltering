@@ -22,6 +22,15 @@ def euclid(data,pone,ptwo):
 
 #d = euclidDistance(critics,'Lisa Rose', 'Gene Seymour')
 #print d
+#-----------------------------------------------------------------------------------------------------------------------
+'''def manhatten(data,pone,ptwo):
+	shared = {}
+	total = 0
+	for movie in data[pone]:
+		if movie in data[ptwo]:
+			shared[movie] = 1
+			total += ()'''
+#-----------------------------------------------------------------------------------------------------------------------
 
 def pearson(data,pone,ptwo):
 	shared = {}
@@ -50,3 +59,63 @@ def pearson(data,pone,ptwo):
 
 #p = pearson(critics,'Lisa Rose', 'Gene Seymour')
 #print p
+#-----------------------------------------------------------------------------------------------------------------------
+# A function to assign ranks and sort
+#	the rankings
+def spearman_sort(l):
+	l = [[k,v] for k,v in l.items()]
+	l.sort(key=lambda l:l[1])
+	index = 1
+	for each in l:
+		each[1] = index
+		index += 1
+	l.sort()
+	return l
+
+''' Spearman Correlation algorithm
+		1) Find scores of each object
+		2) Calculate ranks for each object
+		3) Find the difference between ranks,
+			to verify - sum of ranks should be 0
+		4) Calculate sum of squares of ranks
+		5) Calculate Spearman r = 1 - (6*summ(d**2)/n(n**2-1)) '''
+def spearman(data,pone,ptwo):
+	shared = {}
+
+	# Find scores of each object
+	x = {}
+	y = {}
+	index = 1
+	for movie in data[pone]:
+		if movie in data[ptwo]:
+			shared[movie] = 1
+			x[index] = data[pone][movie]
+			y[index] = data[ptwo][movie]
+			index += 1
+
+	# If no common element return 0
+	if len(shared) == 0:
+		return 0
+
+	# Calculate ranks for each object
+	x = spearman_sort(x)
+	y = spearman_sort(y)
+
+	# Find the difference between ranks
+	diff = []
+	for index in range(0,len(x)):
+		diff.append(x[index][1] - y[index][1])
+
+	# Calculate sum of squares of ranks	
+	diffs = 0
+	for each in diff:
+		diffs += each**2
+
+	# Calculate Spearman r = 1 - (6*summ(d**2)/n(n**2-1))
+	l = len(shared)
+	temp = (6*diffs)/(l*((l**2)-1))
+	r = 1 - temp
+	return r
+#-----------------------------------------------------------------------------------------------------------------------
+				
+
