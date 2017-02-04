@@ -3,8 +3,8 @@
 <h2>User-User Collaborative filtering</h2>
 <br>To run, go to prompt.
 <br>\>\>\> from data import critics
-<br>\>\>\> from recommend import match
-<br>\>\>\> match(critics,'Toby',1,n=3) 
+<br>\>\>\> from recommend import recommend_user
+<br>\>\>\> recommend_user(critics,'Toby',1,n=3) 
 <br>\# this uses Pearson Correlation and displays 3 results similar to Toby.
 <br><br><br>
 engine.py contains two recommender engines i)Euclid's distance and ii)Pearson Correlation. 
