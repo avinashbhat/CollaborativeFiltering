@@ -23,13 +23,24 @@ def euclid(data,pone,ptwo):
 #d = euclidDistance(critics,'Lisa Rose', 'Gene Seymour')
 #print d
 #-----------------------------------------------------------------------------------------------------------------------
-'''def manhatten(data,pone,ptwo):
+''' Manhatten distance algorithm
+	1) Identify the shared objects
+	2) Calculate difference between the scores
+	3) Sum the scores
+	Minimum distance similar the people
+	'''
+def manhatten(data,pone,ptwo):
 	shared = {}
 	total = 0
 	for movie in data[pone]:
 		if movie in data[ptwo]:
 			shared[movie] = 1
-			total += ()'''
+			total += abs(data[pone][movie] - data[ptwo][movie])
+
+	if len(shared) == 0:
+		return 0
+
+	return 1/(1+total)
 #-----------------------------------------------------------------------------------------------------------------------
 
 def pearson(data,pone,ptwo):
@@ -117,5 +128,29 @@ def spearman(data,pone,ptwo):
 	r = 1 - temp
 	return r
 #-----------------------------------------------------------------------------------------------------------------------
-				
+''' Cosine Similarity
+	1) Find scores of each object
+	2) Calculate ||x|| = sqrt(summ(x))
+	3) Calculate ||y|| = sqrt(summ(y))
+	4) Dot product x.y = summ(x*y)
+	5) Cosine Similarity =  (x.y)/(||x||X||y||)
+	'''
+def cosine(data,pone,ptwo):
+	shared = {}
+	dot = 0
+	x = 0
+	y = 0
+	for movie in data[pone]:
+		if movie in data[ptwo]:
+			shared[movie] = 1
+			x += data[pone][movie]**2
+			y += data[ptwo][movie]**2
+			dot += data[pone][movie]*data[ptwo][movie]
 
+	if len(shared) == 0:
+		return 0
+
+	x = x**0.5
+	y = y**0.5
+	return dot/(x*y)
+#-----------------------------------------------------------------------------------------------------------------------

@@ -1,15 +1,19 @@
 #from data import critics
-from engines import pearson, euclid, spearman
+from engines import pearson, euclid, spearman, manhatten, cosine
 # n is how many results you want 
 # sim is the similarity function you want to use
-def match(data,person,e,n=5):
+def recommend_user(data,person,e,n=5):
 
 	if e == 0:
 		sim = euclid
 	elif e == 1:
-		sim = pearson
+		sim = manhatten
 	elif e == 2:
+		sim = pearson
+	elif e == 3:
 		sim = spearman
+	elif e == 4:
+		sim = cosine
 
 	s = []
 	for people in data:
@@ -17,8 +21,7 @@ def match(data,person,e,n=5):
 		if people != person:
 			s.append((sim(data,person,people),people))
 	s.sort()
-	if e == 1 or e == 2:
-		s.reverse()
+	s.reverse()
 	# Return the best n results
 	return s[0:n]
 
