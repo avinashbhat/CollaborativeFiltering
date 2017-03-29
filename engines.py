@@ -1,3 +1,4 @@
+import math
 # Takes 3 parameters, data, names
 def euclid(data,pone,ptwo):
 	# Get what items are shared between two people
@@ -61,7 +62,7 @@ def pearson(data,pone,ptwo):
 	if length == 0:
 		return 0
 
-	temp = prodsum - ((p1sum*p2sum)/length)
+	temp = abs(prodsum - ((p1sum*p2sum)/length))
 	value = ((p1sq-(p1sum**2/length))*(p2sq-(p2sum**2/length)))**0.5
 	if value == 0:
 		return 0
@@ -115,7 +116,7 @@ def spearman(data,pone,ptwo):
 	# Find the difference between ranks
 	diff = []
 	for index in range(0,len(x)):
-		diff.append(x[index][1] - y[index][1])
+		diff.append(abs(x[index][1] - y[index][1]))
 
 	# Calculate sum of squares of ranks	
 	diffs = 0
@@ -124,7 +125,7 @@ def spearman(data,pone,ptwo):
 
 	# Calculate Spearman r = 1 - (6*summ(d**2)/n(n**2-1))
 	l = len(shared)
-	temp = (6*diffs)/(l*((l**2)-1))
+	temp = (6*diffs)/(1+l*((l**2)-1))
 	r = 1 - temp
 	return r
 #-----------------------------------------------------------------------------------------------------------------------
@@ -154,3 +155,14 @@ def cosine(data,pone,ptwo):
 	y = y**0.5
 	return dot/(x*y)
 #-----------------------------------------------------------------------------------------------------------------------
+'''def centered_cosine(lis,p1,p2):
+    avg={p1: sum(lis[p1][i] for i in lis[p1])/len(lis[p1])}
+   avg.update({p2: sum(lis[p2][i] for i in lis[p2]) / (1+len(lis[p2]))})
+    value=dict([(x,dict([(item,lis[x][item]-avg[x]) for item in lis[x]])) for x in avg])
+   	nu = 0
+    for i in value[p1]:
+        if i in value[p2]:
+            nu=nu+value[p1][i]*value[p2][i]
+    x=sum(pow(value[p1][item],2) for item in [i for i in value[p1]])
+    y=sum(pow(value[p2][item],2) for item in [i for i in value[p2]])
+    return nu/(1+math.sqrt(x*y))'''
