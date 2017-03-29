@@ -1,13 +1,31 @@
-<h1>Recommender
+# Collaborative Filtering based Recommender System
+## Getting Started
+Collaborative Filtering is the technique used to predict the data based on the data given by the peers.
+### Prerequisites
+Since the code is written in Python 2, this particular version needs to be installed.
+The dataset used is the movielens dataset downloadable at https://grouplens.org/datasets/movielens/
+<br>Download any dataset of your choice and place it at appropriate folder. Set the pathname as the parameters for functions in the program.
 
-<h2>User-User Collaborative filtering</h2>
-<br>To run, go to prompt.
-<br>\>\>\> from data import critics
-<br>\>\>\> from recommend import recommend_user
-<br>\>\>\> recommend_user(critics,'Toby',1,n=3) 
-<br>\# this uses Pearson Correlation and displays 3 results similar to Toby.
-<br><br><br>
-engine.py contains two recommender engines i)Euclid's distance and ii)Pearson Correlation. 
-<br>data.py contains test data.
-<br>recommend.py contains functions 
-<br>i) match(data,person_to_be_matched,type_of_engine,no_of_results) - return the similar people based on the ratings.<br> person_to_be_matched is the person who's similar people we need to find, this is taken from the dataset.<br> type_of_engine is which engine you want to use for recommendation. 0 - Euclid's distance, 1 - Manhatten Distance, 2 - Pearson Correlation, 3 - Spearman Correlation, 4 - Cosine Distance .<br> no_of_results is the total number of similar people we need as output.
+### Running
+Go to the code folder via terminal and type 
+```
+python recommender.py
+```
+### Other Details
+engine.py contains 5 recommender engines which can be used in the code 
+* 0 - Euclid's distance
+* 1 - Manhatten Distance
+* 2 - Pearson Correlation
+* 3 - Spearman Correlation
+* 4 - Cosine Distance
+
+## Authors
+Avinash Bhat
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+* Book Reference - Programming Collective Intelligence by Toby Segaran
+
